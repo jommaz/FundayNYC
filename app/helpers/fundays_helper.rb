@@ -1,0 +1,2 @@
+module FundaysHelper
+end

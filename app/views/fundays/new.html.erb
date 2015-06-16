@@ -30,13 +30,13 @@
       <h6 class="madlib">but you keep putting it off because you just can't be bothered.</h6>
       <hr>
       <div>
+        <%= form_for @funday, method: :post do |f| %>
       <h6 class="madlib"> And now, it's the weekend of</h6>
-       <input type="date" class="datepicker">
-      <h6 class="madlib">but don't know where to start.</h6>
+       <%= f.text_field :date, class: "datepicker", required: :true %>
+        <h6 class="madlib">but don't know where to start.</h6>
        </div>
       <button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action">Start here
-      <i class="mdi-content-send right"></i>
-      </button>
+       <% end %>
     </form>
   </div>
 </div>
