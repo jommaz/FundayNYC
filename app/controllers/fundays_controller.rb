@@ -10,6 +10,7 @@ class FundaysController < ApplicationController
       redirect_to @funday, notice: "Here is what you can do this weekend!"
     else
       render :new, alert: "There was a problem with curating this weekend"
+    end
   end
 
   def show
