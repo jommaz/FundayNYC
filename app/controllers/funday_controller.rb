@@ -1,13 +1,16 @@
 class FundayController < ApplicationController
   
-  Chiketto.api_key = CWPKSWECLGL2WOLAJT
-  
- 
   def new
-    @event = Chiketto::Event.find(123456)
+  @fundays = Funday.new
+  @segment = Segment.new
+  end
+  
+  def create
+    
   end
 
   def show
     
   end
+  
 end
