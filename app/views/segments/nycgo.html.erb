@@ -1,0 +1,25 @@
+<h1> Events </h1>
+
+<% @parsed["items"].each do |event| %>
+
+        <div class="row">
+            <div class="col s12 m7">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["permalink"] if event["permalink"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= strip_tags(event["desc"]) if event["desc"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+    <% end %>
+

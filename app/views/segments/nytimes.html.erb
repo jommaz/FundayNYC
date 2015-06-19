@@ -1,26 +1,25 @@
 <h1> Events </h1>
 
+<% @parsed["results"].each do |event| %>
 
-<% @parsed["event"].each do |event| %>
-    <% if (event["start"]["local"]) <= @funday.date + "T12:00:00"  %>
         <div class="row">
             <div class="col s12 m7">
               <div class="card indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                  <img class= "activator">
                  </div>
                 <div class="card-content">
-                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                   <h2 class="card-title activator grey-text text-darken-4"><%= strip_tags(event["event_name"]) if event["event_name"] %><i class="mdi-navigation-more-vert right"></i></h2>
                 </div>
                 <div class="card-action">
-                    <%= link_to "More Information", (event["url"] if event["url"]), :target => "_blank" %>
+                    <%= link_to "More Information", (event["event_detail_url"] if event["event_detail_url"]), :target => "_blank" %>
                 </div>
                  <div class="card-reveal">
-                     <span class="card-title grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-close right"></i></span>
-                    <p><%= event["description"]["text"] if event["description"] %></p>
+                     <span class="card-title grey-text text-darken-4"><%= strip_tags(event["event_name"]) %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= strip_tags(event["web_description"]) if event["web_description"] %></p>
                 </div>
               </div>
             </div>
          </div>
-    <% end %>
+
 <% end %>
