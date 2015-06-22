@@ -10,30 +10,50 @@ class SegmentsController < ApplicationController
     # @parsed = JSON.parse(@response)
     # end
     
-    # def new
-    # @funday = Funday.find(params[:funday_id])
-    # @startDate = (@funday.date).strftime("%Y-%m-%d")
-    # @endDate = ((@funday.date)+1.day).strftime("%Y-%m-%d")
-    # @uri = URI("http://api.nytimes.com/svc/events/v2/listings.json?&filters=category:-Movies&date_range=" + @startDate + "%3A" + @endDate + "&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
-    # response = HTTParty.get(@uri, :verify => false)
-    # puts @uri
-    # @parsed = JSON.parse(response)
-    # end
-    # http://api.nytimes.com/svc/events/v2/listings.json?filters=-Movies&date_range=2015-06-20%3A2015-06-21&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610
-    
     def new
     @funday = Funday.find(params[:funday_id])
-  	@token = "&token=3KR5F4OMCGQ46DC5YK23"
-    @start = "&start_date.range_start="
-    @startdate = ((@funday.date).strftime("%Y-%m-%dT%l:%M:%SZ"))
-    @end = "&start_date.range_end="
-    @enddate = (((@funday.date)+ 1.day).strftime("%Y-%m-%dT%l:%M:%SZ"))
-    @specs = "/?popular=on&venue.city=New+York"
-    @uri = URI("https://www.eventbriteapi.com/v3/events/search" + @specs + @start + @startdate + @end + @enddate + @token)
-    response = Net::HTTP.get(@uri)
+    @startDate = (@funday.date).strftime("%Y-%m-%d")
+    @endDate = ((@funday.date)+1.day).strftime("%Y-%m-%d")
+    # @uri = URI("http://api.nytimes.com/svc/events/v2/listings.json?filters=-movies&date_range=2015-06-25%3A2015-06-26&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
+    @uri = URI("http://api.nytimes.com/svc/events/v2/listings.json?&filters=-movies&date_range=" + @startDate + "%3A" + @endDate + "&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
+    @response = Net::HTTP.get(@uri)
     puts @uri
-    @parsed = JSON.parse(response)
+    @parsed = JSON.parse(@response)
+    
+    # @latitude = @parsed["results"][8]
+    # @longitude = @parsed["results"][9]
+    @map = GMaps.new(div: '#map', lat: -12.043333, lng: -77.028333)
+    @map.addMarker(lat: -12.043333,
+               lng: -77.028333,
+               title: 'Lima',
+               click: GMaps::JS["function(e) { alert('You clicked in this marker'); }"])
+    @map.addMarker(lat: -12.042,
+               lng: -77.028333,
+               title: 'Marker with InfoWindow',
+               infoWindow: {
+                 content: '<p>HTML Content</p>'
+               })
     end
+    
+    # http://api.nytimes.com/svc/events/v2/listings.json?filters=-Movies&date_range=2015-06-20%3A2015-06-21&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610
+    
+    # http://api.nytimes.com/svc/events/v2/listings.json?&filters=category:-movies&date_range=2015-06-27:2015-06-28&api-key=5faa2f00a53bae3c1eae66d590a71379:15:56215610
+    
+    # http://api.nytimes.com/svc/events/v2/listings.json?filters=-movies&date_range=2015-06-25%3A2015-06-26&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610
+    
+#     def new
+#     @funday = Funday.find(params[:funday_id])
+#   	@token = "&token=3KR5F4OMCGQ46DC5YK23"
+#     @start = "&start_date.range_start="
+#     @startdate = ((@funday.date).strftime("%Y-%m-%dT%l:%M:%SZ"))
+#     @end = "&start_date.range_end="
+#     @enddate = (((@funday.date)+ 1.day).strftime("%Y-%m-%dT%l:%M:%SZ"))
+#     @specs = "/?popular=on&venue.city=New+York"
+#     @uri = URI("https://www.eventbriteapi.com/v3/events/search" + @specs + @start + @startdate + @end + @enddate + @token)
+#     response = Net::HTTP.get(@uri)
+#     puts @uri
+#     @parsed = JSON.parse(response)
+#     end
     
     # https://www.eventbriteapi.com/v3/events/search/?popular=on&venue.city=New+York&start_date.range_start=2015-06-25T00%3A00%3A48Z&start_date.range_end=2015-06-26T23%3A00%3A51Z&token=3KR5F4OMCGQ46DC5YK23
 

@@ -28,11 +28,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'materialize-sass'
 
 gem 'devise'
-gem 'rubybrite'
-gem 'nytimes-events'
 gem 'geocoder'
-gem 'chiketto'
 gem 'figaro'
+gem 'gmaps-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

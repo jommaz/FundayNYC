@@ -6,9 +6,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBM4hhVyLY6iTArUsZ4Pommh_kJIABlF9E&sensor=true' %>
+      <style type="text/css">
+    #map {
+      width: 400px;
+      height: 400px;
+    }
+  </style>
   </head>
-  <body>
-  
+ <div id="map"></div>
+  <script>
+    var map = new GMaps({
+      el: '#map',
+      lat: -12.043333,
+      lng: -77.028333
+    });
+  </script>
+
     <%= yield %>
 
   </body>

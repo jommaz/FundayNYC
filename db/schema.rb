@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617220307) do
+ActiveRecord::Schema.define(version: 20150622151421) do
 
   create_table "fundays", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20150617220307) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "lat"
+    t.float    "lng"
   end
 
   add_index "segments", ["funday_id"], name: "index_segments_on_funday_id"
