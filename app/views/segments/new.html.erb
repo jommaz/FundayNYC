@@ -1,18 +1,46 @@
-<h1><%= (@funday.date).strftime("%A %d %B") %></h1> -    
+ <div id="map-canvas"></div>
+
+
+<h1><%= (@funday.date).strftime("%A %dth") %> will be a good day </h1>  
 
     <%#= form_for @funday do |f| %>
        <%#= f.text_field :date, class: "datepicker" %>
        <%#= f.submit %>
        <%# end %>
-<h3> Your funday options </h3>
+       
+<h3> Eventbrite Recommendations </h3>
+<% @ebparsed["events"].take(3).each do |event| %>
+       <div class="row">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["url"] if event["url"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= event["description"]["text"] if event["description"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+<% end %>
 
+<h3> NY Times recommendations </h3>
 
-<% @parsed["results"].each do |event| %>
-
+<% @timesparsed["results"].take(3).each do |event| %>
         <div class="row">
-            <div class="col s12 m7">
-              <div class="card small indigo lighten-2 ">
-                  <div class="card-content">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator">
+                 </div>
+                <div class="card-content">
                    <h2 class="card-title activator grey-text text-darken-4"><%= strip_tags(event["event_name"]) if event["event_name"] %><i class="mdi-navigation-more-vert right"></i></h2>
                 </div>
                 <div class="card-action">
@@ -25,5 +53,31 @@
               </div>
             </div>
          </div>
-
 <% end %>
+
+<h3> NYC GO recommendations </h3>
+
+<% @goparsed["items"].take(3).each do |event| %>
+
+        <div class="row">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["permalink"] if event["permalink"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= strip_tags(event["desc"]) if event["desc"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+    <% end %>
+
+

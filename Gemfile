@@ -30,7 +30,8 @@ gem 'materialize-sass'
 gem 'devise'
 gem 'geocoder'
 gem 'figaro'
-gem 'gmaps-rails'
+gem 'gmaps4rails'
+gem 'gon'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

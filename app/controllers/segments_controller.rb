@@ -2,44 +2,54 @@ class SegmentsController < ApplicationController
     
     # def new
     # @funday = Funday.find(params[:funday_id])
-    #   @startDate = (@funday.date).strftime("%m%%2F%d%%2F%Y+%H%%3A%M+%p")
-    #  @enddate = ((@funday.date)+1.day).strftime("%m%%2F%d%%2F%Y+%H%%3A%M+%p")
-    #  @uri = URI("https://api.cityofnewyork.us/calendar/v1/search.htm?app_id=c6f58431&app_key=3d9f670dc4b0c12b795235414c2fb389"  + "&startDate=" + @startDate + "&endDate=" + @enddate)
+    # @startDate = (@funday.date).strftime("%m%%2F%d%%2F%Y")
+    # @enddate = ((@funday.date)+1.day).strftime("%m%%2F%d%%2F%Y")
+    # @uri = URI("https://api.cityofnewyork.us/calendar/v1/search.htm?app_id=c6f58431&app_key=3d9f670dc4b0c12b795235414c2fb389"  + "&startDate=" + @startDate + "+12%3A00+PM" + "&endDate=" + @enddate + "+12%3A00+PM" + "&categories=cultural")
     # @response = Net::HTTP.get(@uri)
     # puts @uri
     # @parsed = JSON.parse(@response)
     # end
     
+    # "https://api.cityofnewyork.us/calendar/v1/search.htm?app_id=c6f58431&app_key=3d9f670dc4b0c12b795235414c2fb389&startDate=06%2F25%2F2015+12%3A00+PM&endDate=06%2F26%2F2015+12%3A00+PM"
+    
+    # https://api.cityofnewyork.us/calendar/v1/search.htm?app_id=c6f58431&app_key=3d9f670dc4b0c12b795235414c2fb389&startDate=06%2F27%2F2015+00%3A00+AM&endDate=06%2F28%2F2015+00%3A00+AM
+    
     def new
     @funday = Funday.find(params[:funday_id])
-    @startDate = (@funday.date).strftime("%Y-%m-%d")
-    @endDate = ((@funday.date)+1.day).strftime("%Y-%m-%d")
-    # @uri = URI("http://api.nytimes.com/svc/events/v2/listings.json?filters=-movies&date_range=2015-06-25%3A2015-06-26&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
-    @uri = URI("http://api.nytimes.com/svc/events/v2/listings.json?&filters=-movies&date_range=" + @startDate + "%3A" + @endDate + "&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
-    @response = Net::HTTP.get(@uri)
-    puts @uri
-    @parsed = JSON.parse(@response)
+    @timesstartDate = (@funday.date).strftime("%Y-%m-%d")
+    @timesendDate = ((@funday.date)+1.day).strftime("%Y-%m-%d")
+    @timesuri = URI("http://api.nytimes.com/svc/events/v2/listings.json?&filters=-movies&date_range=" + @timesstartDate + "%3A" + @timesendDate + "&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
+    @timesresponse = Net::HTTP.get(@timesuri)
+    puts @timesuri
+    @timesparsed = JSON.parse(@timesresponse)
     
-    # @latitude = @parsed["results"][8]
-    # @longitude = @parsed["results"][9]
-    @map = GMaps.new(div: '#map', lat: -12.043333, lng: -77.028333)
-    @map.addMarker(lat: -12.043333,
-               lng: -77.028333,
-               title: 'Lima',
-               click: GMaps::JS["function(e) { alert('You clicked in this marker'); }"])
-    @map.addMarker(lat: -12.042,
-               lng: -77.028333,
-               title: 'Marker with InfoWindow',
-               infoWindow: {
-                 content: '<p>HTML Content</p>'
-               })
+    @ebtoken = "&token=3KR5F4OMCGQ46DC5YK23"
+    @start = "&start_date.range_start="
+    @ebstartdate = ((@funday.date).strftime("%Y-%m-%dT%l:%M:%SZ"))
+    @end = "&start_date.range_end="
+    @ebenddate = (((@funday.date)+ 1.day).strftime("%Y-%m-%dT%l:%M:%SZ"))
+    @eburi = URI("https://www.eventbriteapi.com/v3/events/search/?popular=on&venue.city=New+York" + @start + @ebstartdate + @end + @ebenddate + @ebtoken)
+    @ebresponse = Net::HTTP.get(@eburi)
+    puts @eburi
+    @ebparsed = JSON.parse(@ebresponse)
+    
+    @gostartDate = (@funday.date).strftime("%m%%2F%d%%2F%Y")
+    @goenddate = ((@funday.date)+1.day).strftime("%m%%2F%d%%2F%Y")
+    @gouri = URI("https://api.cityofnewyork.us/calendar/v1/search.htm?app_id=c6f58431&app_key=3d9f670dc4b0c12b795235414c2fb389"  + "&startDate=" + @gostartDate + "+12%3A00+PM" + "&endDate=" + @goenddate + "+12%3A00+PM" + "&categories=cultural")
+    @goresponse = Net::HTTP.get(@gouri)
+    puts @gouri
+    @goparsed = JSON.parse(@goresponse)
+    
     end
     
-    # http://api.nytimes.com/svc/events/v2/listings.json?filters=-Movies&date_range=2015-06-20%3A2015-06-21&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610
+    # gon.latitude = @parsed["results"][0]["geocode_latitude"]
+    # gon.longitude = @parsed["results"][0]["geocode_longitude"]
+    # # @longitude = @parsed[3][9]
     
-    # http://api.nytimes.com/svc/events/v2/listings.json?&filters=category:-movies&date_range=2015-06-27:2015-06-28&api-key=5faa2f00a53bae3c1eae66d590a71379:15:56215610
+    # puts gon.latitude
+    # puts gon.longitude
+    # # puts @longitude
     
-    # http://api.nytimes.com/svc/events/v2/listings.json?filters=-movies&date_range=2015-06-25%3A2015-06-26&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610
     
 #     def new
 #     @funday = Funday.find(params[:funday_id])
