@@ -5,7 +5,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 
 # Deploying to Heroku, so database needs to be PostGres
-gem "pg"
+gem "pg", group: :production
+
+gem 'rails_12factor', group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.2'

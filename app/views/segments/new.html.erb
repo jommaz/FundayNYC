@@ -1,7 +1,11 @@
  <div id="map-canvas"></div>
 
 
-<h1><%= (@funday.date).strftime("%A %d") %> will be a good day </h1>  
+<h1><%= (@funday.date).strftime("%A %d") %> will be a good day </h1>
+
+<!--<button id="ref_butn">Refresh the page now!</button>-->
+<p> Refresh the page for new combinations! </p>
+<button id= "ref_butn" class="btn indigo lighten-2 waves-effect waves-light"> Refresh your Funday <i class="mdi-content-send right"></i> </button>
 
     <%#= form_for @funday do |f| %>
        <%#= f.text_field :date, class: "datepicker" %>
@@ -10,7 +14,7 @@
        
 <h3> Morning things to do </h3>
 <% @ebparsed["events"].shuffle.take(1).each do |event| %>
- <% if event["start"]["local"] <= @funday.date
+ <% if (event["start"]["local"]) <= ((@funday.date).strftime("%Y-%m-%d")) + "T14:00:00" %>
        <div class="row">
             <div class="col s12 m5">
               <div class="card indigo lighten-2 ">
@@ -26,10 +30,12 @@
                  <div class="card-reveal">
                      <span class="card-title grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-close right"></i></span>
                     <p><%= event["description"]["text"] if event["description"] %></p>
+                    <p> <%= event["end"]["local"] if event["end"] %></p>
                 </div>
               </div>
             </div>
          </div>
+    <% end %>
 <% end %>
 <% @timesparsed["results"].shuffle.take(1).each do |event| %>
         <div class="row">
@@ -77,6 +83,29 @@
 
 <h3> afternoon things to do </h3>
 
+<% @ebparsed["events"].shuffle.take(1).each do |event| %>
+<% if (event["start"]["local"]) <= ((@funday.date).strftime("%Y-%m-%d")) + "T18:00:00" %>
+       <div class="row">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["url"] if event["url"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= event["description"]["text"] if event["description"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+    <% end %>
+<% end %>
 <% @timesparsed["results"].shuffle.take(1).each do |event| %>
         <div class="row">
             <div class="col s12 m5">
@@ -98,9 +127,75 @@
             </div>
          </div>
 <% end %>
+<% @goparsed["items"].shuffle.take(1).each do |event| %>
+
+        <div class="row">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["permalink"] if event["permalink"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= strip_tags(event["desc"]) if event["desc"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+    <% end %>
 
 <h3> evening things to do </h3>
 
+<% @ebparsed["events"].shuffle.take(1).each do |event| %>
+<% if (event["start"]["local"]) >= ((@funday.date).strftime("%Y-%m-%d")) + "T20:00:00" %>
+       <div class="row">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["url"] if event["url"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= event["description"]["text"] if event["description"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+    <% end %>
+<% end %>
+<% @timesparsed["results"].shuffle.take(1).each do |event| %>
+        <div class="row">
+            <div class="col s12 m5">
+              <div class="card indigo lighten-2 ">
+                <div class="card-image waves-effect waves-block waves-light">
+                  <img class= "activator">
+                 </div>
+                <div class="card-content">
+                   <h2 class="card-title activator grey-text text-darken-4"><%= strip_tags(event["event_name"]) if event["event_name"] %><i class="mdi-navigation-more-vert right"></i></h2>
+                </div>
+                <div class="card-action">
+                    <%= link_to "More Information", (event["event_detail_url"] if event["event_detail_url"]), :target => "_blank" %>
+                </div>
+                 <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4"><%= strip_tags(event["event_name"]) %><i class="mdi-navigation-close right"></i></span>
+                    <p><%= strip_tags(event["web_description"]) if event["web_description"] %></p>
+                </div>
+              </div>
+            </div>
+         </div>
+<% end %>
 <% @goparsed["items"].shuffle.take(1).each do |event| %>
 
         <div class="row">
