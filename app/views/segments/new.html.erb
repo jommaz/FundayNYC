@@ -13,8 +13,8 @@
        <%# end %>
        
 <h3> Morning things to do </h3>
-<% @ebparsed["events"].shuffle.take(1).each do |event| %>
- <% if (event["start"]["local"]) <= ((@funday.date).strftime("%Y-%m-%d")) + "T14:00:00" %>
+<% @ebparsed["events"].shuffle.each do |event| %>
+ <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T09:00:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T13:00:00") %>
        <div class="row">
             <div class="col s12 m5">
               <div class="card indigo lighten-2 ">
@@ -59,7 +59,6 @@
          </div>
 <% end %>
 <% @goparsed["items"].shuffle.take(1).each do |event| %>
-
         <div class="row">
             <div class="col s12 m5">
               <div class="card indigo lighten-2 ">
@@ -82,9 +81,9 @@
     <% end %>
 
 <h3> afternoon things to do </h3>
+<% @ebparsed["events"].shuffle.each do |event| %>
+ <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T13:01:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T18:00:00") %>
 
-<% @ebparsed["events"].shuffle.take(1).each do |event| %>
-<% if (event["start"]["local"]) <= ((@funday.date).strftime("%Y-%m-%d")) + "T18:00:00" %>
        <div class="row">
             <div class="col s12 m5">
               <div class="card indigo lighten-2 ">
@@ -152,8 +151,8 @@
 
 <h3> evening things to do </h3>
 
-<% @ebparsed["events"].shuffle.take(1).each do |event| %>
-<% if (event["start"]["local"]) >= ((@funday.date).strftime("%Y-%m-%d")) + "T20:00:00" %>
+<% @ebparsed["events"].shuffle.each do |event| %>
+ <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T18:01:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T23:59:00") %>
        <div class="row">
             <div class="col s12 m5">
               <div class="card indigo lighten-2 ">
