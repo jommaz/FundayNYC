@@ -17,6 +17,12 @@ $(document).ready(function(){
   })
 });
 
+
 $(document).ready(function(){
-      $('.parallax').parallax();
-    });
+   $(".button-collapse").sideNav();
+   $('.parallax').parallax();
+   $('.fixed-action-btn').openFAB();
+   $('.fixed-action-btn').closeFAB();
+  });
+  
+   
