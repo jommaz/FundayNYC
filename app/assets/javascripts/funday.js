@@ -16,3 +16,7 @@ $(document).ready(function(){
     closeOnSelect: true
   })
 });
+
+$(document).ready(function(){
+      $('.parallax').parallax();
+    });

@@ -1,56 +1,62 @@
 <div class="parallax-container">
-    <div class="parallax"><img src="images/brooklyn-bridge.jpg"></div>
-    <h1 class="grey-text text-lighten-5">funday</h1>
-  <h5 class="grey lighten-4 grey-text text-darken-1">what the hell should we do this weekend</h5>
+  <div class="section no-pad-bot">
+      <div class = "container">
+        <br>
+        <h1 class="header center white-text"> funday </h1>
+         <div class="row center">
+           <h5 class="header col s12 white-text light"> what the hell should we do </h5>
+         </div>
+         <div class="row center">
+           <%= form_for @funday do |f| %>
+           <%= f.hidden_field :date, :value => Date.today %>
+           <button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action"> what's going down today <i class="mdi-content-send right"></i>
+           <% end %>
+         </div>
+         <br>
+      </div>
   </div>
-  <!--<div class="section white">-->
-  <!--  <div class="row container">-->
-  <!--    <h2 class="header">Funday</h2>-->
-  <!--    <p class="grey-text text-darken-3 lighten-3">What the hell should we do this weekend.</p>-->
-  <!--  </div>-->
-  <!--</div>-->
+    <div class="parallax">
+    <%= image_tag 'brooklyn-bridge.jpg' %>
+  </div>
+</div>
+  
 
-<!--<div class="parallax-container">-->
-<!--    <div class="parallax"><img src="https://download.unsplash.com/27/winter-view.jpeg"></div>-->
-<!--        <h1 class="grey-text text-lighten-5">Funday</h1>-->
-<!--        <h5 class="grey lighten-4 grey-text text-darken-1">What the hell should we do this weekend?</h5>-->
-<!--  </div>-->
-
-<div class ="container">
+<div class ="container white">
+  <div class="section white">
   <h5>It's been a really long week</h5>
   <hr>
-</div>
-<div class="container form">
-  <div class="row">
-    <div class="col 12">
-      <h6 class="madlib"> You were late </h6>
-        <div class="input-field">
-        <input id="late" type="text">
-        <label for="late"> how many times? </label>
-        </div>
-      <h6 class="madlib">this week.</h6>
-      <h6 class="madlib"> The </h6>
-        <div class="input-field">
-          <input id="subway" type="text">
-          <label for="subway"> input lousy subway </label>
-        </div>
-      <h6 class="madlib">kept being delayed and held up.</h6>
-      <h6 class="madlib"> You've been meaning to do </h6>
-        <div class="input-field">
-          <input id="chore" type="text">
-          <label for="chore"> input crappy chore </label>
-        </div>
-      <h6 class="madlib">but you keep putting it off because you just can't be bothered.</h6>
-      <hr>
-      <div>
-        <%= form_for @funday do |f| %>
-      <h6 class="madlib"> Now, what day was it that you have some free time</h6>
-       <%= f.text_field :date, class: "datepicker" %>
-        <h6 class="madlib">but don't know where to start.</h6>
-       </div>
-       <button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action">Start here <i class="mdi-content-send right"></i>
-  </button>
-       <% end %>
+  <div class="row form">
+      <div class="col 12">
+        <h6 class="madlib"> You were late </h6>
+          <div class="input-field">
+          <input id="late" type="text">
+          <label for="late"> how many times? </label>
+          </div>
+        <h6 class="madlib">this week.</h6>
+        <h6 class="madlib"> The </h6>
+          <div class="input-field">
+            <input id="subway" type="text">
+            <label for="subway"> input lousy subway </label>
+          </div>
+        <h6 class="madlib">kept being delayed and held up.</h6>
+        <h6 class="madlib"> You've been meaning to do </h6>
+          <div class="input-field">
+            <input id="chore" type="text">
+            <label for="chore"> input crappy chore </label>
+          </div>
+        <h6 class="madlib">but you keep putting it off because you just can't be bothered.</h6>
+        <br>
+        <br>
+        <div>
+          <%= form_for @funday do |f| %>
+        <h6 class="madlib"> Now, what day was it that you have some free time</h6>
+         <%= f.text_field :date, class: "datepicker" %>
+          <h6 class="madlib">and where do we even start!</h6>
+         </div>
+         <button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action">Start here <i class="mdi-content-send right"></i>
+          </button>
+         <% end %>
+      </div>
     </div>
-  </div>
+</div>
 </div>
