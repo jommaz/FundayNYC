@@ -5,7 +5,7 @@ class SegmentsController < ApplicationController
     @funday = Funday.find(params[:funday_id])
     @timesstartDate = (@funday.date).strftime("%Y-%m-%d")
     @timesendDate = ((@funday.date)+1.day).strftime("%Y-%m-%d")
-    @timesuri = URI("http://api.nytimes.com/svc/events/v2/listings.json?&filters=-movies&date_range=" + @timesstartDate + "%3A" + @timesendDate + "&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
+    @timesuri = URI("http://api.nytimes.com/svc/events/v2/listings.json?&filters=free%3Atrue&date_range=" + @timesstartDate + "%3A" + @timesendDate + "&api-key=5faa2f00a53bae3c1eae66d590a71379%3A15%3A56215610")
     @timesresponse = Net::HTTP.get(@timesuri)
     puts @timesuri
     @timesparsed = JSON.parse(@timesresponse)
