@@ -43,9 +43,9 @@
              <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T09:00:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T13:00:00") %>
                  <div class="col s12 m4">
                      <div class="card small indigo lighten-2">
-                           <div class="card-image waves-effect waves-block waves-light">
-                        <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %> >
-                         </div>
+                           <div class="card-image activator waves-effect waves-block waves-light">
+                                <img class="activator" src=<%= event["logo"]["url"] if event["logo"] %> />
+                            </div>
                          <div class="card-content">
                            <h2 class="card-title activator grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-more-vert right"></i></h2>
                         </div>
@@ -66,7 +66,7 @@
                 <div class="col s12 m4">
                     <div class="card small indigo lighten-2 ">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class= "activator">
+                            <img class= "activator" <%= image_tag("Why.png") %> />
                         </div>
                         <div class="card-content">
                             <h2 class="card-title activator grey-text text-darken-4"><%= strip_tags(event["event_name"]) if event["event_name"] %><i class="mdi-navigation-more-vert right"></i></h2>
@@ -85,7 +85,7 @@
                     <div class="col s12 m4">
                           <div class="card small indigo lighten-2 ">
                                 <div class="card-image waves-effect waves-block waves-light">
-                                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                                  <img class= "activator" <%= image_tag("Why.png") %>>
                                  </div>
                                 <div class="card-content">
                                    <h2 class="card-title activator grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-more-vert right"></i></h2>
@@ -133,7 +133,7 @@
             <div class="col s12 m4">
               <div class="card small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class= "activator">
+                  <img class= "activator" <%= image_tag("Why.png") %>>
                  </div>
                 <div class="card-content">
                    <h2 class="card-title activator grey-text text-darken-4"><%= strip_tags(event["event_name"]) if event["event_name"] %><i class="mdi-navigation-more-vert right"></i></h2>
@@ -151,7 +151,7 @@
             <div class="col s12 m4">
               <div class="card small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                  <img class= "activator" <%= image_tag("Why.png") %>>
                  </div>
                 <div class="card-content">
                    <h2 class="card-title activator grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-more-vert right"></i></h2>
@@ -193,7 +193,7 @@
             <div class="col s12 m4">
               <div class="card small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class= "activator">
+                  <img class= "activator" <%= image_tag("Why.png")%>>
                  </div>
                 <div class="card-content">
                    <h2 class="card-title activator grey-text text-darken-4"><%= strip_tags(event["event_name"]) if event["event_name"] %><i class="mdi-navigation-more-vert right"></i></h2>
@@ -213,7 +213,7 @@
             <div class="col s12 m4">
               <div class="card small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %>>
+                  <img class= "activator" <%= image_tag("Why.png") %>>
                  </div>
                 <div class="card-content">
                    <h2 class="card-title activator grey-text text-darken-4"><%= event["name"] %><i class="mdi-navigation-more-vert right"></i></h2>
