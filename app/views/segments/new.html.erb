@@ -14,24 +14,15 @@
         <br>
         <br>
         <br>
-        <!--<li class="fixed-action-btn" style="bottom: 45px; left: 24px;">-->
-        <!--    <a class="btn-floating btn-large"> New Date-->
-        <!--  <i class="large material-icons">mode_edit</i>-->
-        <!--    </a>-->
-        <!--    <ul>-->
-        <!--        <li>-->
-        <!--    <%#= form_for @funday do |f| %>-->
-        <!--     <%#= f.text_field :date, class: "datepicker" %>-->
-        <!--     <%# end %>-->
-        <!--  </li>-->
-        <!--</ul>-->
-        <!--</li>-->
       </ul>
     </div>
-
-
+    
+   
+        
 
 <main>
+    
+     
 
 
 <h1><%= (@funday.date).strftime("%A %d") %> will be a good day </h1>
@@ -53,7 +44,7 @@
                  <div class="col s12 m4">
                      <div class="card small indigo lighten-2">
                            <div class="card-image waves-effect waves-block waves-light">
-                        <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %> alt="favicon.ico" >
+                        <img class= "activator" src= <%= event["logo"]["url"] if event["logo"] %> >
                          </div>
                          <div class="card-content">
                            <h2 class="card-title activator grey-text text-darken-4"><%= event["name"]["text"] %><i class="mdi-navigation-more-vert right"></i></h2>
@@ -177,7 +168,7 @@
 </div>
 
 <div class = "section">
-<h3 class = "title"><a name='evening'>evening things to do</a></h3>
+<h3 class = "title"><a name='evening'> evening things to do</a></h3>
     <div class="row">
     <% @ebparsed["events"].shuffle.each do |event| %>
      <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T18:01:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T23:59:00") %>
@@ -237,6 +228,8 @@
     <% end %>
 </div>
 </div>
+
+
 </main>
 
 

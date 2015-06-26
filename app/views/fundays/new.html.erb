@@ -3,9 +3,9 @@
       <div class = "container">
         <br>
         <br>
-        <h1 class="header center white-text"> funday </h1>
+        <h1 class="header center white-text light"> FUNDAY </h1>
          <div class="row center">
-           <h5 class="header col s12 white-text light"> what the hell should we do </h5>
+           <h5 class="header col s12 white-text light"> what the hell should we do ?</h5>
          </div>
          <div class="row center">
            <%= form_for @funday do |f| %>
@@ -49,10 +49,13 @@
         <h6 class="madlib">but you keep putting it off because you just can't be bothered.</h6>
         <br>
         <br>
-        <div>
+        <div class="matdatepicker">
           <%= form_for @funday do |f| %>
         <h6 class="madlib"> Now, what day was it that you have some free time</h6>
-         <%= f.text_field :date, class: "datepicker validate" %>
+        <br>
+        <br>
+        <label for ="datepicker"> pick a day already </label>
+         <%= f.text_field :date, class: "datepicker"%>
           <h6 class="madlib">and where do we even start!</h6>
          </div>
          <button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action">Start here <i class="mdi-content-send right"></i>
@@ -62,3 +65,15 @@
     </div>
 </div>
 </div>
+
+ <div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>

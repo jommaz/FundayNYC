@@ -20,4 +20,37 @@
     z-index: 1;
 }
 
-body, html{ background-color: #EDEDED;}
+h3{
+   font: black; 
+}
+
+ul a{
+  color: inherit;
+}
+
+main{ background-color: #EDEDED;}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+    
+    // .valign-wrapper{
+    //     display:none;
+    // }
+  }
+  
+.valign-wrapper{
+  width: 110px;
+  position: fixed;
+}
+
+@media only screen and (max-width : 992px) {
+    ul{
+      display: none;
+    }
+}
+
+.card-reveal{
+    font-size: 20px;
+}

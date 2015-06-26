@@ -7,8 +7,12 @@
   font-size: 24px;
 }
 
+div.matdatepicker{
+  font-size:10px;
+}
+
 header, main, footer {
-    padding-left: 200px;
+    padding-left: 160px;
     padding-right: 20px;
   }
 
@@ -22,10 +26,7 @@ a{
   color: inherit;
 }
 
-.valign-wrapper{
-  width: 110px;
-  position: fixed;
-}
+
 
 .li{
   font-size: 24px;
