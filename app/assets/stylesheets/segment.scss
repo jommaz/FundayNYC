@@ -28,6 +28,10 @@ ul a{
   color: inherit;
 }
 
+h3 a{
+    color: inherit;
+}
+
 main{ background-color: #EDEDED;}
 
 @media only screen and (max-width : 992px) {
@@ -53,4 +57,14 @@ main{ background-color: #EDEDED;}
 
 .card-reveal{
     font-size: 20px;
+}
+
+.picker__frame{
+    z-index: 5;
+    position: relative;
+}
+
+.picker__holder{
+    z-index: 5;
+    position: relative;
 }

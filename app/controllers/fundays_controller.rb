@@ -14,7 +14,16 @@ class FundaysController < ApplicationController
   end
 
   def show
-    @funday = Funday.find(params[:funday_id])
+    @funday = Funday.find(params[:id])
+  end
+  
+  def update
+    @funday = Funday.find(params[:id])
+    if @funday.update(params.require(:funday).permit(:date))
+      redirect_to new_funday_segment_path(@funday)
+    else
+      render new_funday_segment_path(@funday)
+    end
   end
   
 end
