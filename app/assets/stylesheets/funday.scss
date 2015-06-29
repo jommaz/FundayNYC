@@ -70,3 +70,25 @@ h3{
 .madlib{ display: inline;}
 
 
+.card.activator.small.indigo.lighten-1 {
+  z-index: 1;
+}
+
+html {
+  z-index: 20;
+}
+
+// .picker_frame {
+//   position:absolute;
+//   z-index: 30 !important;
+// }
+
+// .picker_box {
+//   position:absolute;
+//   z-index: 30 !important;
+// }
+
+// .picker_wrap {
+//   position:absolute;
+//   z-index: 30 !important;
+// }

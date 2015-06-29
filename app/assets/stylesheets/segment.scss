@@ -59,12 +59,7 @@ main{ background-color: #EDEDED;}
     font-size: 20px;
 }
 
-.picker__frame{
-    z-index: 5;
-    position: relative;
-}
 
-.picker__holder{
-    z-index: 5;
-    position: relative;
+.valign-wrapper{
+    z-index: 9999 !important;
 }

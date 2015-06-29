@@ -1,9 +1,12 @@
+      
+       
+       
     <div class='valign-wrapper'>
       <ul>
           <br>
           <br>
           <br>
-        <l><a class="valign waves-effect waves-light indigo lighten-2 btn-large" href="#morning">Earlyish</a></li>
+        <li><a class="valign waves-effect waves-light indigo lighten-2 btn-large" href="#morning">Earlyish</a></li>
             <br>
         <li><a class="valign waves-effect waves-light indigo lighten-2 btn-large" href="#afternoon">Noonish</a></li>
             <br>
@@ -12,13 +15,14 @@
         <li class="valign waves-effect waves-light pink accent-2 btn-large" id="ref_butn">Freshen up</li>
         <br>
         <br>
-        <br>
+        <br>    
         <br>
         <li>
-                <%#= form_for @funday do |f| %>
-       <%#= f.text_field :date, class: "datepicker" %>
-    <!--<button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action">NewDay<i class="mdi-content-send right"></i>-->
-       <%# end %>
+            <%= form_for @funday do |f| %>
+             <label for ="datepicker"> click on the line below for a new day </label>
+            <%= f.text_field :date, class: "datepicker" %>
+        <button class="btn indigo lighten-2 waves-effect waves-light" type="submit" name="action">NewDay<i class="mdi-content-send right"></i> </button>
+       <% end %>
         </li>
       </ul>
     </div>
@@ -42,11 +46,11 @@
       
     <div class = "section">
         <h3><a name='morning'> earlyish things to do</a></h3>
-        <div class="row isotope">
+        <div class="row">
             <% @ebparsed["events"].shuffle.each do |event| %>
              <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T09:00:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T12:59:00") %>
                  <div class="col s12 m4">
-                     <div class="card small indigo lighten-1">
+                     <div class="card activator small indigo lighten-1">
                            <div class="card-image activator waves-effect waves-block waves-light">
                                <% if event["logo"] = event["logo"] %>
                                 <img class="activator" src=<%= event["logo"]["url"] %> />
@@ -72,8 +76,8 @@
         
                 <% @timesparsed["results"].shuffle.take(1).each do |event| %>
                 <div class="col s12 m4">
-                    <div class="card small indigo lighten-2 ">
-                        <div class="card-image waves-effect waves-block waves-light">
+                    <div class="card activator small indigo lighten-2 ">
+                        <div class="card-image activator waves-effect waves-block waves-light">
                             <img class= "activator" <%= image_tag("Why.png") %> />
                         </div>
                         <div class="card-content">
@@ -91,8 +95,8 @@
 
                 <% @goparsed["items"].shuffle.take(1).each do |event| %>
                     <div class="col s12 m4">
-                          <div class="card small indigo lighten-2 ">
-                                <div class="card-image waves-effect waves-block waves-light">
+                          <div class="card activator small indigo lighten-2 ">
+                                <div class="card-image activator waves-effect waves-block waves-light">
                                   <img class= "activator" <%= image_tag("Why.png") %>>
                                  </div>
                                 <div class="card-content">
@@ -118,7 +122,7 @@
     <% @ebparsed["events"].shuffle.each do |event| %>
  <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T13:00:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T17:59:00") %>
             <div class="col s12 m4">
-              <div class="card small indigo lighten-2 ">
+              <div class="card small activator indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
                   <% if event["logo"] = event["logo"] %>
                                 <img class="activator" src=<%= event["logo"]["url"] %> />
@@ -143,7 +147,7 @@
 <% end %>
 <% @timesparsed["results"].shuffle.take(1).each do |event| %>
             <div class="col s12 m4">
-              <div class="card small indigo lighten-2 ">
+              <div class="card activator small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class= "activator" <%= image_tag("Why.png") %>>
                  </div>
@@ -161,7 +165,7 @@
 <% end %>
 <% @goparsed["items"].shuffle.take(1).each do |event| %>
             <div class="col s12 m4">
-              <div class="card small indigo lighten-2 ">
+              <div class="card activator small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class= "activator" <%= image_tag("Why.png") %>>
                  </div>
@@ -185,7 +189,7 @@
     <% @ebparsed["events"].shuffle.each do |event| %>
      <% if (event["start"]["local"]) >= (((@funday.date).strftime("%Y-%m-%d")) + "T18:00:00") && (event["start"]["local"]) <= (((@funday.date).strftime("%Y-%m-%d")) + "T23:59:00") %>
                 <div class="col s12 m4">
-                  <div class="card small indigo lighten-2 ">
+                  <div class="card activator small indigo lighten-2 ">
                     <div class="card-image waves-effect waves-block waves-light">
                        <% if event["logo"] = event["logo"] %>
                                 <img class="activator" src=<%= event["logo"]["url"] %> />
@@ -207,7 +211,7 @@
     <% end %>
 <% @timesparsed["results"].shuffle.take(1).each do |event| %>
             <div class="col s12 m4">
-              <div class="card small indigo lighten-2 ">
+              <div class="card activator small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class= "activator" <%= image_tag("Why.png")%>>
                  </div>
@@ -227,7 +231,7 @@
     <% end %>
 <% @goparsed["items"].shuffle.take(1).each do |event| %>
             <div class="col s12 m4">
-              <div class="card small indigo lighten-2 ">
+              <div class="card activator small indigo lighten-2 ">
                 <div class="card-image waves-effect waves-block waves-light">
                   <img class= "activator" <%= image_tag("Why.png") %>>
                  </div>
